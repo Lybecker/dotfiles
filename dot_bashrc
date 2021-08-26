@@ -134,3 +134,6 @@ set page-completions off
 alias k=kubectl
 # kubectl autocomplete
 source <(kubectl completion bash | sed s/kubectl/k/g)
+
+# install zsh
+source install-zsh.sh
