@@ -137,3 +137,5 @@ source <(kubectl completion bash | sed s/kubectl/k/g)
 
 # install zsh
 source install-zsh.sh
+
+alias d='docker $*'

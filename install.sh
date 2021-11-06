@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Setup cript for GitHub CodeSpaces for automatically setup chezmoi
+
 set -e # -e: exit on error
 
 if [ ! "$(command -v chezmoi)" ]; then
