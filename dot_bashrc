@@ -119,6 +119,9 @@ fi
 # Recursively remove .DS_Store files
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
 
+# Add ~/bin to PATH
+export PATH="$HOME/bin:$PATH"
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
