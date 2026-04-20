@@ -23,6 +23,7 @@ suffix. The script is idempotent.
 - `install.sh` — entrypoint installer (symlinks + calls `install-zsh.sh` + wires `core.excludesfile`).
 - `install-zsh.sh` — installs zsh, oh-my-zsh, `zsh-autosuggestions`, and `zsh-syntax-highlighting`.
 - `bin/` — anything here is symlinked into `~/bin`, which is on `$PATH`.
+- `vscode/settings.json` — VS Code user settings, symlinked to the OS-appropriate location. Makes zsh the default integrated terminal.
 - `Makefile` — `make install`, `make link`, `make zsh`, `make lint`.
 - `.github/workflows/ci.yml` — shellcheck on push/PR.
 - `.github/copilot-instructions.md` — guidance for AI agents editing this repo.

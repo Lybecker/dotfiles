@@ -15,7 +15,8 @@ This repo is a small, personal dotfiles collection. No templating tools
 | `.editorconfig` | Editor whitespace/indent rules. Symlinked to `~/.editorconfig`. | |
 | `.gitignore_global` | Global gitignore. `install.sh` wires `git config --global core.excludesfile ~/.gitignore_global`. | |
 | `bin/` | Executable scripts. `install.sh` symlinks each entry into `~/bin`, which is on `$PATH` via `.exports`. | Add small, portable shell scripts here. Use `#!/usr/bin/env bash` or `#!/bin/sh`. `chmod +x` the file. |
-| `install.sh` | Entry point. Symlinks tracked files + `bin/` into `$HOME`, runs `install-zsh.sh`, wires git global ignore. | Must stay idempotent. Back up existing non-symlink targets before replacing. Works on macOS and Debian/Ubuntu. |
+| `vscode/settings.json` | VS Code user settings. Symlinked to `~/Library/Application Support/Code/User/settings.json` on macOS, `~/.config/Code/User/settings.json` on Linux. | Keep JSON valid. Not used by Codespaces web UI (that uses Settings Sync). |
+| `install.sh` | Entry point. Symlinks tracked files + `bin/` + `vscode/` into `$HOME`, runs `install-zsh.sh`, `chsh`'s to zsh on Linux, wires git global ignore. | Must stay idempotent. Back up existing non-symlink targets before replacing. Works on macOS and Debian/Ubuntu. |
 | `install-zsh.sh` | Installs zsh (Linux only), oh-my-zsh, `zsh-autosuggestions`, `zsh-syntax-highlighting`. | Must stay idempotent and cross-platform. Gate `apt-get` behind a `uname` check. |
 | `Makefile` | Convenience targets: `install`, `link`, `zsh`, `lint`. | |
 | `.github/workflows/ci.yml` | Runs `shellcheck` on push/PR. | |

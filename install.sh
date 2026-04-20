@@ -53,6 +53,36 @@ fi
 # Install zsh + oh-my-zsh + plugins
 "$SCRIPT_DIR/install-zsh.sh"
 
+# On Linux (Codespaces), set zsh as the default login shell so VS Code's
+# integrated terminal picks it up via $SHELL. Idempotent.
+if [ "$(uname -s)" = "Linux" ] && command -v zsh >/dev/null 2>&1; then
+  zsh_path="$(command -v zsh)"
+  if [ "${SHELL:-}" != "$zsh_path" ]; then
+    # chsh needs zsh to be listed in /etc/shells
+    if ! grep -qx "$zsh_path" /etc/shells 2>/dev/null; then
+      echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null || true
+    fi
+    sudo chsh -s "$zsh_path" "$(whoami)" 2>/dev/null || \
+      chsh -s "$zsh_path" 2>/dev/null || \
+      echo "Could not chsh to zsh; run manually if desired." >&2
+  fi
+fi
+
+# Symlink VS Code user settings (settings.json, keybindings.json) if present.
+case "$(uname -s)" in
+  Darwin) VSCODE_USER="$HOME/Library/Application Support/Code/User" ;;
+  Linux)  VSCODE_USER="$HOME/.config/Code/User" ;;
+  *)      VSCODE_USER="" ;;
+esac
+if [ -n "${VSCODE_USER:-}" ] && [ -d "$SCRIPT_DIR/vscode" ]; then
+  mkdir -p "$VSCODE_USER"
+  for f in settings.json keybindings.json; do
+    if [ -f "$SCRIPT_DIR/vscode/$f" ]; then
+      backup_and_link "$SCRIPT_DIR/vscode/$f" "$VSCODE_USER/$f"
+    fi
+  done
+fi
+
 # Point git at our global ignore file (idempotent).
 if command -v git >/dev/null 2>&1; then
   git config --global core.excludesfile "$HOME/.gitignore_global"
