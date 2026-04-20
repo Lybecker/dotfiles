@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.history/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Logs / temp
+*.log
+*.tmp
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

@@ -87,11 +87,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -117,10 +112,7 @@ if ! shopt -oq posix; then
 fi
 
 # Recursively remove .DS_Store files
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Add ~/bin to PATH
-export PATH="$HOME/bin:$PATH"
+# (moved to ~/.aliases)
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
@@ -134,11 +126,15 @@ set mark-symlinked-directories on
 # Show all autocomplete results at once
 set page-completions off
 
-alias k=kubectl
-# kubectl autocomplete
-source <(kubectl completion bash | sed s/kubectl/k/g)
+# kubectl autocomplete (only if kubectl is installed)
+if command -v kubectl >/dev/null 2>&1; then
+  alias k=kubectl
+  source <(kubectl completion bash | sed s/kubectl/k/g)
+fi
 
-# install zsh
-source install-zsh.sh
+# Shared aliases and exports
+[ -f "$HOME/.exports" ] && . "$HOME/.exports"
+[ -f "$HOME/.aliases" ] && . "$HOME/.aliases"
 
-alias d='docker $*'
+# Machine-local overrides (never tracked in git)
+[ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"

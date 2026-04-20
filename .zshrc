@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# (PATH is managed in ~/.exports which is sourced below.)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/aly/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,15 +71,25 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# zsh-autosuggestions requires to be local
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
+# zsh-autosuggestions and zsh-syntax-highlighting are installed by install-zsh.sh
+# into $ZSH_CUSTOM/plugins/. zsh-syntax-highlighting must be listed last.
 plugins=(
 	git
+	docker
+	kubectl
 	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# History (set after oh-my-zsh so its defaults don't override us)
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 
 # User configuration
 
@@ -106,3 +116,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Shared aliases and exports
+[ -f "$HOME/.exports" ] && source "$HOME/.exports"
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+
+# kubectl autocomplete (only if kubectl is installed)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh | sed s/kubectl/k/g)
+fi
+
+# Machine-local overrides (never tracked in git)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
