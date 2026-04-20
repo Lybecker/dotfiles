@@ -28,3 +28,15 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # Prepend $HOME/bin last so it wins over brew paths
 export PATH="$HOME/bin:$PATH"
+
+# Force a black terminal background via OSC 11 / foreground via OSC 10.
+# Only in interactive terminals on a real TTY. Supported by iTerm2, Terminal.app,
+# xterm, most modern emulators. Harmless no-op in terminals that don't parse it.
+case "$-" in
+  *i*)
+    if [ -t 1 ] && [ "${TERM:-dumb}" != "dumb" ] && [ -z "${VSCODE_INJECTION:-}" ]; then
+      printf '\033]11;#000000\007'
+      printf '\033]10;#e5e5e5\007'
+    fi
+    ;;
+esac
