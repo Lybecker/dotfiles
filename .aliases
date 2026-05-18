@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 # Shared aliases sourced by both .bashrc and .zshrc.
 # Keep POSIX-compatible so both shells are happy.
 
