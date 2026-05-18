@@ -83,6 +83,11 @@ if [ -n "${VSCODE_USER:-}" ] && [ -d "$SCRIPT_DIR/vscode" ]; then
   done
 fi
 
+# Install Copilot CLI skills and custom agents (idempotent).
+if [ -x "$SCRIPT_DIR/copilot/bootstrap.sh" ]; then
+  "$SCRIPT_DIR/copilot/bootstrap.sh"
+fi
+
 # Point git at our global ignore file (idempotent).
 if command -v git >/dev/null 2>&1; then
   git config --global core.excludesfile "$HOME/.gitignore_global"

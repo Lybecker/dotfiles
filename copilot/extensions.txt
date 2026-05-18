@@ -1,0 +1,14 @@
+# Copilot CLI extensions to install at the user level.
+# Format (pipe-separated):
+#   kind|repo|src|name[|ref]
+#
+#   kind  - "skill" or "agent"
+#   repo  - git URL to clone
+#   src   - path inside the repo to symlink (use "." for repo root)
+#   name  - link name under ~/.copilot/skills/ or ~/.copilot/agents/
+#   ref   - optional git ref (tag/branch/sha) to pin; omit to track default branch
+#
+# Lines starting with "#" and blank lines are ignored.
+
+skill|https://github.com/cathrynlavery/diagram-design|skills/diagram-design|diagram-design
+agent|https://github.com/burkeholland/anvil|agents/anvil.agent.md|anvil.agent.md

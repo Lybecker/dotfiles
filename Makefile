@@ -1,4 +1,4 @@
-.PHONY: help install link zsh lint
+.PHONY: help install link zsh lint copilot copilot-update
 
 help:
 	@echo "Targets:"
@@ -6,6 +6,8 @@ help:
 	@echo "  link      Symlink dotfiles only (no zsh install)"
 	@echo "  zsh       Run install-zsh.sh only"
 	@echo "  lint      Run shellcheck on all shell scripts"
+	@echo "  copilot         Install/refresh Copilot CLI skills & agents"
+	@echo "  copilot-update  Pull latest changes for Copilot CLI extensions"
 
 install:
 	./install.sh
@@ -24,5 +26,11 @@ lint:
 	@if ! command -v shellcheck >/dev/null 2>&1; then \
 		echo "shellcheck not installed"; exit 1; \
 	fi
-	shellcheck --severity=error install.sh install-zsh.sh bin/*.sh
+	shellcheck --severity=error install.sh install-zsh.sh bin/*.sh copilot/*.sh
 	shellcheck --severity=error --shell=bash .bashrc .aliases .exports
+
+copilot:
+	./copilot/bootstrap.sh
+
+copilot-update:
+	./copilot/update.sh
