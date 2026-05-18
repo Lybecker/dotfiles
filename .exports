@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 # Shared environment variables sourced by both .bashrc and .zshrc.
 
 # Locale

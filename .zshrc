@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # If you come from bash you might have to change your $PATH.
 # (PATH is managed in ~/.exports which is sourced below.)
 
