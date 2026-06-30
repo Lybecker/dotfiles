@@ -36,6 +36,9 @@ export PATH="$HOME/bin:$PATH"
 case "$-" in
   *i*)
     if [ -t 1 ] && [ "${TERM:-dumb}" != "dumb" ] && [ -z "${VSCODE_INJECTION:-}" ]; then
+      if [ "${TERM_PROGRAM:-}" = "iTerm.app" ]; then
+        printf '\033]1337;SetColors=bg=000000,fg=e5e5e5\007'
+      fi
       printf '\033]11;#000000\007'
       printf '\033]10;#e5e5e5\007'
     fi

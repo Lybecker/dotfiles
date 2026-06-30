@@ -129,3 +129,9 @@ fi
 
 # Machine-local overrides (never tracked in git)
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# BEGIN Agency MANAGED BLOCK
+if [[ ":${PATH}:" != *":/Users/anderslybecker/.config/agency/CurrentVersion:"* ]]; then
+    export PATH="/Users/anderslybecker/.config/agency/CurrentVersion:${PATH}"
+fi
+# END Agency MANAGED BLOCK
