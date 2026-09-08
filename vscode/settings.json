@@ -22,5 +22,6 @@
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "@azure.argTenant": ""
+  "@azure.argTenant": "",
+  "security.promptForLocalFileProtocolHandling": false
 }

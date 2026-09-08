@@ -11,4 +11,5 @@
 # Lines starting with "#" and blank lines are ignored.
 
 skill|https://github.com/cathrynlavery/diagram-design|skills/diagram-design|diagram-design
+skill|https://github.com/softaworks/agent-toolkit|skills/humanizer|humanizer
 agent|https://github.com/burkeholland/anvil|agents/anvil.agent.md|anvil.agent.md
