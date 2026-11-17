@@ -23,5 +23,28 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "@azure.argTenant": "",
-  "security.promptForLocalFileProtocolHandling": false
+  "security.promptForLocalFileProtocolHandling": false,
+  "chat.mcp.serverSampling": {
+    "azure (Agent Plugin): azure": {
+      "allowedDuringChat": true
+    }
+  },
+  "chat.tools.terminal.autoApprove": {
+    "/^dotnet --info$/": true,
+    "dotnet build": true,
+    "/^curl -fsSL https://api\\.nuget\\.org/v3-flatcontainer/rebus/index\\.json$/": true,
+    "dotnet nuget": true
+  },
+  "chat.tools.urls.autoApprove": {
+    "https://api.nuget.org": {
+      "approveRequest": true,
+      "approveResponse": false
+    },
+    "https://www.nuget.org": {
+      "approveRequest": true,
+      "approveResponse": false
+    }
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "chat.viewSessions.orientation": "stacked"
 }

@@ -82,6 +82,10 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
+# Only suggest completions valid in the current context.
+ZSH_AUTOSUGGEST_STRATEGY=(completion)
+unset CDPATH
+
 source $ZSH/oh-my-zsh.sh
 
 # History (set after oh-my-zsh so its defaults don't override us)

@@ -12,4 +12,5 @@
 
 skill|https://github.com/cathrynlavery/diagram-design|skills/diagram-design|diagram-design
 skill|https://github.com/softaworks/agent-toolkit|skills/humanizer|humanizer
+skill|https://github.com/GoogleChrome/modern-web-guidance|skills/modern-web-guidance|modern-web-guidance
 agent|https://github.com/burkeholland/anvil|agents/anvil.agent.md|anvil.agent.md
